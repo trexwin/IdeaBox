@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdeaBox.JsonConverter\IdeaBox.JsonConverter.csproj" />
+    <ProjectReference Include="..\IdeaBox.Storage\IdeaBox.Storage.csproj" />
+    <ProjectReference Include="..\IdeaBox.Validators\IdeaBox.Validators.csproj" />
+  </ItemGroup>
+
+</Project>
