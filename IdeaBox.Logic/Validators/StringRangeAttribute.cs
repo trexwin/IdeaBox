@@ -5,7 +5,7 @@ namespace IdeaBox.Logic.Validators
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class StringRangeAttribute : ValidationAttribute
     {
-        public string[] Values { get; protected set; }
+        public string[] Values { get; }
 
         public StringRangeAttribute(string[] values)
         {
