@@ -1,3 +1,5 @@
+using IdeaBox.Data.Extensions;
+using IdeaBox.Data.Models;
 using IdeaBox.Storage;
 using IdeaBox.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -15,21 +17,23 @@ namespace IdeaBox.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Idea>>> Index(string? type)
+        public async Task<ActionResult<IEnumerable<IdeaViewModel>>> Index(string? type)
         {
             var ideas = await _ideaStorage.LoadValues();
             if (type != null)
-                ideas = ideas.Where(i => i.Type == type);
-
-            return View(ideas.OrderByDescending(i => i.CreationDate));
+                ideas = ideas.Where(i => i.IdeaType?.GetIdeaTypeAttributeName() == type);
+            
+            var ideaViewModels = ideas.Select(i => new IdeaViewModel(i));
+            return View(ideaViewModels.OrderByDescending(i => i.CreationDate));
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Idea?>> Item(int id)
+        public async Task<ActionResult<IdeaViewModel?>> Item(int id)
         {
             var ideas = await _ideaStorage.LoadValues();
-            return View(ideas.FirstOrDefault(i => i.Id == id));
+            var idea = ideas.FirstOrDefault(i => i.Id == id);
+            return View(idea == null ? null : new IdeaViewModel(idea));
         }
 
         [HttpGet]
@@ -38,14 +42,14 @@ namespace IdeaBox.Web.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Idea>> Create(Idea idea)
+        public async Task<ActionResult<NewIdeaViewModel>> Create(NewIdeaViewModel ideaViewModel)
         {
             if (ModelState.IsValid)
             {
-                await _ideaStorage.StoreValue(idea);
+                await _ideaStorage.StoreValue(ideaViewModel.Idea);
                 return RedirectToAction("Index");
             }
-            return View(idea);
+            return View(ideaViewModel);
         }
 
 

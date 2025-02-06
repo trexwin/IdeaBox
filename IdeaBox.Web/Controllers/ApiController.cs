@@ -1,8 +1,8 @@
-﻿using IdeaBox.Storage;
+﻿using IdeaBox.Data.Extensions;
+using IdeaBox.Data.Models;
+using IdeaBox.Storage;
 using IdeaBox.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Plugins;
-using System.Diagnostics;
 
 namespace IdeaBox.Web.Controllers
 {
@@ -18,29 +18,29 @@ namespace IdeaBox.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Idea>>> Index(string? type)
+        public async Task<ActionResult<IEnumerable<IdeaViewModel>>> Index(string? type)
         {
             var ideas = await _ideaStorage.LoadValues();
             if (type != null)
-                ideas = ideas.Where(i => i.Type == type);
-            return Ok(ideas);
+                ideas = ideas.Where(i => i.IdeaType?.GetIdeaTypeAttributeName() == type);
+            return Ok(ideas.Select(i => new IdeaViewModel(i)));
         }
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<IEnumerable<Idea>>> Item(int id)
+        public async Task<ActionResult<IdeaViewModel>> Item(int id)
         {
             var ideas = await _ideaStorage.LoadValues();
             var idea = ideas.FirstOrDefault(i => i.Id == id);
-            return idea == null ? NotFound() : Ok(idea);
+            return idea == null ? NotFound() : Ok(new IdeaViewModel(idea));
         }
 
         [HttpPost]
-        public async Task<ActionResult<Idea>> Post([FromBody] Idea idea)
+        public async Task<ActionResult<IdeaViewModel>> Post([FromBody] NewIdeaViewModel idea)
         {
-            var newIdea = await _ideaStorage.StoreValue(idea);
-            return CreatedAtAction(nameof(Item), new { id = newIdea.Id }, newIdea);
+            var newIdea = await _ideaStorage.StoreValue(idea.Idea);
+            var ideaViewModel = new IdeaViewModel(newIdea);
+            return CreatedAtAction(nameof(Item), new { id = ideaViewModel.Id }, ideaViewModel);
         }
-
     }
 }
