@@ -1,6 +1,6 @@
 ﻿using IdeaBox.Data.Helper;
 
-namespace IdeaBox.Logic.Validators
+namespace IdeaBox.Backend.Validators
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class IdeaTypeRangeAttribute : StringRangeAttribute

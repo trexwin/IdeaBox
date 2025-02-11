@@ -1,3 +1,4 @@
+using IdeaBox.Backend.Storage;
 using IdeaBox.Data.Models;
 using IdeaBox.Storage;
 using IdeaBox.Storage.Implementations;
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Storage
 // Change path for localstorage
-builder.Services.AddSingleton<IStorage<Idea>, LocalStorage<Idea>>(_ => new LocalStorage<Idea>(@"D:\IdeaBoxData"));
+builder.Services.AddSingleton<IStorage<Idea>, LocalIdeaStorage>(_ => new LocalIdeaStorage(@"D:\IdeaBoxData"));
 //builder.Services.AddSingleton<IStorage<Idea>, MemoryStorage<Idea>>();
 
 builder.Services.AddControllersWithViews();

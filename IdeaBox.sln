@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Web", "IdeaBox.Web\IdeaBox.Web.csproj", "{C9628126-AD3B-407C-A5B8-379489A2A24B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Storage", "IdeaBox.Storage\IdeaBox.Storage.csproj", "{F4FC3F65-03DC-4C83-9FBB-713AD8A88276}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Data", "IdeaBox.Data\IdeaBox.Data.csproj", "{F8DF6EFF-BE0B-413E-BF55-421502016FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaBox.Logic", "IdeaBox.Logic\IdeaBox.Logic.csproj", "{E9B92A48-CF72-4BFB-BC45-717DA78B63A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Backend", "IdeaBox.Backend\IdeaBox.Backend.csproj", "{E9B92A48-CF72-4BFB-BC45-717DA78B63A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Mapper", "IdeaBox.Mapper\IdeaBox.Mapper.csproj", "{C0806B79-681A-4575-A58E-46C049CE7025}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdeaBox.Web", "IdeaBox.Web\IdeaBox.Web.csproj", "{0B7EA08A-CBA3-4422-B0A5-8EC965170D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C9628126-AD3B-407C-A5B8-379489A2A24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9628126-AD3B-407C-A5B8-379489A2A24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9628126-AD3B-407C-A5B8-379489A2A24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9628126-AD3B-407C-A5B8-379489A2A24B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4FC3F65-03DC-4C83-9FBB-713AD8A88276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4FC3F65-03DC-4C83-9FBB-713AD8A88276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4FC3F65-03DC-4C83-9FBB-713AD8A88276}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{E9B92A48-CF72-4BFB-BC45-717DA78B63A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9B92A48-CF72-4BFB-BC45-717DA78B63A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9B92A48-CF72-4BFB-BC45-717DA78B63A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0806B79-681A-4575-A58E-46C049CE7025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0806B79-681A-4575-A58E-46C049CE7025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0806B79-681A-4575-A58E-46C049CE7025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0806B79-681A-4575-A58E-46C049CE7025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7EA08A-CBA3-4422-B0A5-8EC965170D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7EA08A-CBA3-4422-B0A5-8EC965170D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7EA08A-CBA3-4422-B0A5-8EC965170D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7EA08A-CBA3-4422-B0A5-8EC965170D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

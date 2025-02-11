@@ -1,11 +1,11 @@
 ﻿using IdeaBox.Data.Models;
 using IdeaBox.Data.Extensions;
-using IdeaBox.Logic.JsonConverters;
-using IdeaBox.Logic.Validators;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using IdeaBox.Data.Models.Types;
 using IdeaBox.Data.Helper;
+using IdeaBox.Backend.Validators;
+using IdeaBox.Backend.JsonConverters;
 
 namespace IdeaBox.Web.Models
 {
@@ -88,7 +88,6 @@ namespace IdeaBox.Web.Models
         [RequiredIfValue(nameof(Type), "uitje")]
         [GreaterThan(nameof(Begin))]
         [JsonPropertyName("eindDatum")]
-        [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime? End 
         {
             get => (Idea.IdeaType as Outing)?.End;

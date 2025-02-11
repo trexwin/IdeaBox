@@ -1,15 +1,15 @@
 ﻿
 using IdeaBox.Mapper.Attributes;
 
-namespace IdeaBox.Data.Models
+namespace IdeaBox.Data.Archive
 {
-    [MapClass(typeof(Archive.User))]
+    [MapClass(typeof(Models.User))]
     public class User
     {
-        [MapProperty(nameof(Archive.User.UserName))]
+        [MapProperty(nameof(Models.User.UserName))]
         public string? UserName { get; set; }
 
-        [MapProperty(nameof(Archive.User.UserId))]
+        [MapProperty(nameof(Models.User.UserId))]
         public int? UserId { get; set; }
     }
 }

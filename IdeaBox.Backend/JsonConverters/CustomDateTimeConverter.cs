@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace IdeaBox.Logic.JsonConverters
+namespace IdeaBox.Backend.JsonConverters
 {
     public class CustomDateTimeConverter : JsonConverter<DateTime>
     {

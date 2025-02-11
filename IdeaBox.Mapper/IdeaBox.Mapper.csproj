@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IdeaBox.Mapper\IdeaBox.Mapper.csproj" />
-    <ProjectReference Include="..\IdeaBox.Storage\IdeaBox.Storage.csproj" />
-  </ItemGroup>
-
 </Project>
