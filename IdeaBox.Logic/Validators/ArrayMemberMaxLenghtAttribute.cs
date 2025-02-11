@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdeaBox.Backend.Validators
+namespace IdeaBox.Logic.Validators
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class ArrayMemberMaxLenghtAttribute : ValidationAttribute

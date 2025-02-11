@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IdeaBox.Backend\IdeaBox.Backend.csproj" />
     <ProjectReference Include="..\IdeaBox.Data\IdeaBox.Data.csproj" />
-    <ProjectReference Include="..\IdeaBox.Mapper\IdeaBox.Mapper.csproj" />
+    <ProjectReference Include="..\IdeaBox.Logic\IdeaBox.Logic.csproj" />
     <ProjectReference Include="..\IdeaBox.Storage\IdeaBox.Storage.csproj" />
   </ItemGroup>
 

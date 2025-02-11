@@ -1,30 +1,26 @@
-﻿using IdeaBox.Data.Models.Types;
-using IdeaBox.Mapper.Attributes;
+﻿using IdeaBox.Data.JsonConverter;
+using IdeaBox.Data.Models.Types;
+using IdeaBox.Storage;
+using System.Text.Json.Serialization;
 
 namespace IdeaBox.Data.Models
 {
-    [MapClass(typeof(Archive.Idea))]
-    public class Idea
+    public class Idea : IStorageItem
     {
-        [MapProperty(nameof(Archive.Idea.Id))]
         public int Id { get; set; }
-
-        [MapProperty(nameof(Archive.Idea.CreationDate))]
         public DateTime CreationDate { get; set; }
-
-        [MapProperty(nameof(Archive.Idea.Subject))]
         public string? Subject { get; set; }
-
-        [MapProperty(nameof(Archive.Idea.Body))]
         public string? Body { get; set; }
-
-        [MapProperty(nameof(Archive.Idea.User), IsNested = true)]
         public User? User { get; set; }
 
-        [MapProperty(nameof(Archive.Idea.IdeaType), IsNested = true)]
+        [JsonConverter(typeof(IdeaTypeConverter))]
         public BaseIdeaType? IdeaType { get; set; }
-
-        [MapProperty(nameof(Archive.Idea.Categories))]
         public string[]? Categories { get; set; }
+
+        public void Sanitise()
+        {
+            if (User != null && User.UserId == null && User.UserName == null)
+                User = null;
+        }
     }
 }

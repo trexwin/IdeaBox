@@ -1,9 +1,9 @@
 ﻿using IdeaBox.Data.Extensions;
 using IdeaBox.Data.Models.Types;
 using IdeaBox.Data.Models;
+using IdeaBox.Logic.JsonConverters;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using IdeaBox.Backend.JsonConverters;
 
 namespace IdeaBox.Web.Models
 {

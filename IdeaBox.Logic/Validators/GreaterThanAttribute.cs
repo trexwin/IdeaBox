@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdeaBox.Backend.Validators
+namespace IdeaBox.Logic.Validators
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class GreaterThanAttribute : ValidationAttribute
