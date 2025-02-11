@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdeaBox.Validators
+namespace IdeaBox.Logic.Validators
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class StringRangeAttribute : ValidationAttribute

@@ -17,6 +17,7 @@ namespace IdeaBox.Storage.Implementations
 
         public Task<T> StoreValue(T obj)
         {
+            obj.Sanitise();
             obj.Id = _id++;
             obj.CreationDate = DateTime.Now;
 

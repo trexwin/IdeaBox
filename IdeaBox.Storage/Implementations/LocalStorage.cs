@@ -1,6 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-using System.Text.Json;
-using System.Xml.Serialization;
+﻿using System.Text.Json;
 
 namespace IdeaBox.Storage.Implementations
 {
@@ -17,44 +15,39 @@ namespace IdeaBox.Storage.Implementations
             _localFolderPath = localFolderPath;
 
             // Retrieve highest id
-            var files = Directory.EnumerateFiles(_localFolderPath, "*.xml").Select(Path.GetFileNameWithoutExtension);
-            var ids = files.Where(s => int.TryParse(s, out int tmp)).Select(int.Parse); // Can not be null
-
+            var files = Directory.EnumerateFiles(_localFolderPath, "*.json").Select(Path.GetFileNameWithoutExtension);
+            var ids = files.Select(s => int.TryParse(s, out int tmp) ? tmp : -1);
             _id = ids.Any() ? ids.Max() + 1 : 0;
         }
 
         public Task<T> StoreValue(T obj)
         {
+            obj.Sanitise();
             obj.Id = _id++;
             obj.CreationDate = DateTime.Now;
 
-            var serializer = new XmlSerializer(typeof(T));
-            var path = Path.Combine(_localFolderPath, $"{obj.Id}.xml");
-            using (var writer = new StreamWriter(path, false))
-            {
-                serializer.Serialize(writer, obj);
-            }
+            var jsonString = JsonSerializer.Serialize(obj);
+            var path = Path.Combine(_localFolderPath, $"{obj.Id}.json");
+            File.WriteAllText(path, jsonString);
 
             return Task.FromResult(obj);
         }
 
         public Task<IEnumerable<T>> LoadValues()
         {
-            var list = new List<T>();
-            var serializer = new XmlSerializer(typeof(T));
-            foreach (string file in Directory.EnumerateFiles(_localFolderPath, "*.xml"))
+            if (!Directory.Exists(_localFolderPath))
+                return Task.FromResult(Enumerable.Empty<T>());
+
+            var files = Directory.GetFiles(_localFolderPath, "*.json").Select(File.ReadAllText);
+
+            var values = new List<T>();
+            foreach (var file in files)
             {
-                object? val = null;
-                using (var reader = new StreamReader(file))
-                {
-                    val = serializer.Deserialize(reader);
-                }
-                
-                if (val is T tVal)
-                    list.Add(tVal);
+                var val = JsonSerializer.Deserialize<T>(file);
+                if(val != null)
+                    values.Add(val);
             }
-            return Task.FromResult(list.AsEnumerable());
+            return Task.FromResult(values.AsEnumerable());
         }
-            
     }
 }
